@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.litrosBomba1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -58,20 +57,36 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.dineroB4Tb = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.bombaGb = new System.Windows.Forms.GroupBox();
             this.bombasCb = new System.Windows.Forms.ComboBox();
+            this.habilitarBt = new System.Windows.Forms.Button();
             this.prepagoGb = new System.Windows.Forms.GroupBox();
             this.cantidadTb = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.quetzalesRb = new System.Windows.Forms.RadioButton();
             this.litrosRb = new System.Windows.Forms.RadioButton();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.tipoLlenadoGb = new System.Windows.Forms.GroupBox();
             this.tanquellenoRb = new System.Windows.Forms.RadioButton();
             this.prepagoRb = new System.Windows.Forms.RadioButton();
-            this.label2 = new System.Windows.Forms.Label();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.nombreClienteTb = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.precioDiaBtn = new System.Windows.Forms.Button();
+            this.precioDiaTb = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.label13 = new System.Windows.Forms.Label();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -84,33 +99,29 @@
             this.groupBox4.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox8.SuspendLayout();
+            this.bombaGb.SuspendLayout();
             this.prepagoGb.SuspendLayout();
-            this.groupBox6.SuspendLayout();
+            this.tipoLlenadoGb.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.panel2);
             this.groupBox1.Controls.Add(this.panel1);
-            this.groupBox1.Location = new System.Drawing.Point(60, 220);
+            this.groupBox1.Location = new System.Drawing.Point(67, 398);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(246, 289);
+            this.groupBox1.Size = new System.Drawing.Size(246, 158);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Bomba 1";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(35, 138);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(186, 34);
-            this.button2.TabIndex = 6;
-            this.button2.Text = "Detener";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel2
             // 
@@ -190,9 +201,9 @@
             // 
             this.groupBox2.Controls.Add(this.panel4);
             this.groupBox2.Controls.Add(this.panel3);
-            this.groupBox2.Location = new System.Drawing.Point(312, 220);
+            this.groupBox2.Location = new System.Drawing.Point(319, 398);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(246, 289);
+            this.groupBox2.Size = new System.Drawing.Size(246, 158);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Bomba 2";
@@ -272,9 +283,9 @@
             // 
             this.groupBox3.Controls.Add(this.panel5);
             this.groupBox3.Controls.Add(this.panel6);
-            this.groupBox3.Location = new System.Drawing.Point(564, 220);
+            this.groupBox3.Location = new System.Drawing.Point(571, 398);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(246, 289);
+            this.groupBox3.Size = new System.Drawing.Size(246, 158);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Bomba 3";
@@ -353,9 +364,9 @@
             // 
             this.groupBox4.Controls.Add(this.panel7);
             this.groupBox4.Controls.Add(this.panel8);
-            this.groupBox4.Location = new System.Drawing.Point(816, 220);
+            this.groupBox4.Location = new System.Drawing.Point(823, 398);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(246, 289);
+            this.groupBox4.Size = new System.Drawing.Size(246, 158);
             this.groupBox4.TabIndex = 1;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Bomba 4";
@@ -430,39 +441,16 @@
             this.label16.TabIndex = 2;
             this.label16.Text = "Q. ";
             // 
-            // groupBox5
+            // bombaGb
             // 
-            this.groupBox5.Controls.Add(this.groupBox8);
-            this.groupBox5.Controls.Add(this.prepagoGb);
-            this.groupBox5.Controls.Add(this.groupBox6);
-            this.groupBox5.Controls.Add(this.label2);
-            this.groupBox5.Location = new System.Drawing.Point(60, 29);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(641, 165);
-            this.groupBox5.TabIndex = 2;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Despachar";
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.button1);
-            this.groupBox8.Controls.Add(this.bombasCb);
-            this.groupBox8.Location = new System.Drawing.Point(431, 30);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(200, 100);
-            this.groupBox8.TabIndex = 3;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Seleccione una bomba";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(8, 51);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 34);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Habilitar";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.bombaGb.Controls.Add(this.bombasCb);
+            this.bombaGb.Enabled = false;
+            this.bombaGb.Location = new System.Drawing.Point(771, 17);
+            this.bombaGb.Name = "bombaGb";
+            this.bombaGb.Size = new System.Drawing.Size(200, 132);
+            this.bombaGb.TabIndex = 3;
+            this.bombaGb.TabStop = false;
+            this.bombaGb.Text = "Seleccione una bomba";
             // 
             // bombasCb
             // 
@@ -472,11 +460,25 @@
             "Bomba 2",
             "Bomba 3",
             "Bomba 4"});
-            this.bombasCb.Location = new System.Drawing.Point(8, 24);
+            this.bombasCb.Location = new System.Drawing.Point(8, 50);
             this.bombasCb.Name = "bombasCb";
             this.bombasCb.Size = new System.Drawing.Size(186, 21);
             this.bombasCb.TabIndex = 4;
             this.bombasCb.SelectedIndexChanged += new System.EventHandler(this.bombasCb_SelectedIndexChanged);
+            // 
+            // habilitarBt
+            // 
+            this.habilitarBt.BackColor = System.Drawing.Color.SeaGreen;
+            this.habilitarBt.Enabled = false;
+            this.habilitarBt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.habilitarBt.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.habilitarBt.Location = new System.Drawing.Point(232, 213);
+            this.habilitarBt.Name = "habilitarBt";
+            this.habilitarBt.Size = new System.Drawing.Size(526, 44);
+            this.habilitarBt.TabIndex = 5;
+            this.habilitarBt.Text = "Habilitar Bomba";
+            this.habilitarBt.UseVisualStyleBackColor = false;
+            this.habilitarBt.Click += new System.EventHandler(this.button1_Click);
             // 
             // prepagoGb
             // 
@@ -484,16 +486,17 @@
             this.prepagoGb.Controls.Add(this.label1);
             this.prepagoGb.Controls.Add(this.quetzalesRb);
             this.prepagoGb.Controls.Add(this.litrosRb);
-            this.prepagoGb.Location = new System.Drawing.Point(219, 30);
+            this.prepagoGb.Enabled = false;
+            this.prepagoGb.Location = new System.Drawing.Point(565, 17);
             this.prepagoGb.Name = "prepagoGb";
-            this.prepagoGb.Size = new System.Drawing.Size(200, 100);
+            this.prepagoGb.Size = new System.Drawing.Size(200, 132);
             this.prepagoGb.TabIndex = 8;
             this.prepagoGb.TabStop = false;
             this.prepagoGb.Text = "Prepago";
             // 
             // cantidadTb
             // 
-            this.cantidadTb.Location = new System.Drawing.Point(26, 36);
+            this.cantidadTb.Location = new System.Drawing.Point(24, 51);
             this.cantidadTb.Name = "cantidadTb";
             this.cantidadTb.Size = new System.Drawing.Size(165, 20);
             this.cantidadTb.TabIndex = 0;
@@ -501,7 +504,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 17);
+            this.label1.Location = new System.Drawing.Point(26, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(126, 13);
             this.label1.TabIndex = 1;
@@ -510,7 +513,7 @@
             // quetzalesRb
             // 
             this.quetzalesRb.AutoSize = true;
-            this.quetzalesRb.Location = new System.Drawing.Point(26, 62);
+            this.quetzalesRb.Location = new System.Drawing.Point(24, 83);
             this.quetzalesRb.Name = "quetzalesRb";
             this.quetzalesRb.Size = new System.Drawing.Size(72, 17);
             this.quetzalesRb.TabIndex = 2;
@@ -521,7 +524,7 @@
             // litrosRb
             // 
             this.litrosRb.AutoSize = true;
-            this.litrosRb.Location = new System.Drawing.Point(104, 62);
+            this.litrosRb.Location = new System.Drawing.Point(102, 83);
             this.litrosRb.Name = "litrosRb";
             this.litrosRb.Size = new System.Drawing.Size(50, 17);
             this.litrosRb.TabIndex = 3;
@@ -530,21 +533,22 @@
             this.litrosRb.UseVisualStyleBackColor = true;
             this.litrosRb.CheckedChanged += new System.EventHandler(this.galonesRb_CheckedChanged);
             // 
-            // groupBox6
+            // tipoLlenadoGb
             // 
-            this.groupBox6.Controls.Add(this.tanquellenoRb);
-            this.groupBox6.Controls.Add(this.prepagoRb);
-            this.groupBox6.Location = new System.Drawing.Point(19, 30);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(188, 100);
-            this.groupBox6.TabIndex = 7;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Tipo de Llenado";
+            this.tipoLlenadoGb.Controls.Add(this.tanquellenoRb);
+            this.tipoLlenadoGb.Controls.Add(this.prepagoRb);
+            this.tipoLlenadoGb.Enabled = false;
+            this.tipoLlenadoGb.Location = new System.Drawing.Point(371, 17);
+            this.tipoLlenadoGb.Name = "tipoLlenadoGb";
+            this.tipoLlenadoGb.Size = new System.Drawing.Size(188, 132);
+            this.tipoLlenadoGb.TabIndex = 7;
+            this.tipoLlenadoGb.TabStop = false;
+            this.tipoLlenadoGb.Text = "Tipo de Llenado";
             // 
             // tanquellenoRb
             // 
             this.tanquellenoRb.AutoSize = true;
-            this.tanquellenoRb.Location = new System.Drawing.Point(49, 60);
+            this.tanquellenoRb.Location = new System.Drawing.Point(50, 68);
             this.tanquellenoRb.Name = "tanquellenoRb";
             this.tanquellenoRb.Size = new System.Drawing.Size(87, 17);
             this.tanquellenoRb.TabIndex = 1;
@@ -556,7 +560,7 @@
             // prepagoRb
             // 
             this.prepagoRb.AutoSize = true;
-            this.prepagoRb.Location = new System.Drawing.Point(49, 30);
+            this.prepagoRb.Location = new System.Drawing.Point(50, 38);
             this.prepagoRb.Name = "prepagoRb";
             this.prepagoRb.Size = new System.Drawing.Size(65, 17);
             this.prepagoRb.TabIndex = 0;
@@ -565,25 +569,183 @@
             this.prepagoRb.UseVisualStyleBackColor = true;
             this.prepagoRb.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(425, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
             // serialPort1
             // 
             this.serialPort1.PortName = "COM4";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(60, 12);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1002, 369);
+            this.tabControl1.TabIndex = 9;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.nombreClienteTb);
+            this.tabPage1.Controls.Add(this.label3);
+            this.tabPage1.Controls.Add(this.habilitarBt);
+            this.tabPage1.Controls.Add(this.groupBox5);
+            this.tabPage1.Controls.Add(this.bombaGb);
+            this.tabPage1.Controls.Add(this.prepagoGb);
+            this.tabPage1.Controls.Add(this.tipoLlenadoGb);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(994, 281);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Despachar";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // nombreClienteTb
+            // 
+            this.nombreClienteTb.Location = new System.Drawing.Point(414, 177);
+            this.nombreClienteTb.Name = "nombreClienteTb";
+            this.nombreClienteTb.Size = new System.Drawing.Size(278, 20);
+            this.nombreClienteTb.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(310, 180);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Nombre del cliente:";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.precioDiaBtn);
+            this.groupBox5.Controls.Add(this.precioDiaTb);
+            this.groupBox5.Controls.Add(this.label2);
+            this.groupBox5.Location = new System.Drawing.Point(18, 17);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(347, 132);
+            this.groupBox5.TabIndex = 8;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Precio del día";
+            // 
+            // precioDiaBtn
+            // 
+            this.precioDiaBtn.Location = new System.Drawing.Point(96, 74);
+            this.precioDiaBtn.Name = "precioDiaBtn";
+            this.precioDiaBtn.Size = new System.Drawing.Size(162, 34);
+            this.precioDiaBtn.TabIndex = 6;
+            this.precioDiaBtn.Text = "Guardar";
+            this.precioDiaBtn.UseVisualStyleBackColor = true;
+            this.precioDiaBtn.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // precioDiaTb
+            // 
+            this.precioDiaTb.Location = new System.Drawing.Point(93, 51);
+            this.precioDiaTb.Name = "precioDiaTb";
+            this.precioDiaTb.Size = new System.Drawing.Size(165, 20);
+            this.precioDiaTb.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(93, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(138, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Ingrese el precio del día (Q)";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.label13);
+            this.tabPage2.Controls.Add(this.dataGridView4);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.dataGridView3);
+            this.tabPage2.Controls.Add(this.label9);
+            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.dataGridView1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(994, 343);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Reportes";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(61, 38);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(440, 122);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(61, 19);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(120, 13);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "Abastecimientos del día";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(507, 19);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(127, 13);
+            this.label9.TabIndex = 3;
+            this.label9.Text = "Abastecimientos Prepago";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(507, 38);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(440, 122);
+            this.dataGridView2.TabIndex = 2;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(61, 169);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(153, 13);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "Abastecimientos Tanque Lleno";
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(61, 188);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(440, 122);
+            this.dataGridView3.TabIndex = 4;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(507, 169);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(45, 13);
+            this.label13.TabIndex = 7;
+            this.label13.Text = "Bombas";
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(507, 188);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.Size = new System.Drawing.Size(440, 122);
+            this.dataGridView4.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1116, 521);
-            this.Controls.Add(this.groupBox5);
+            this.ClientSize = new System.Drawing.Size(1116, 620);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -611,13 +773,22 @@
             this.panel7.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
+            this.bombaGb.ResumeLayout(false);
             this.prepagoGb.ResumeLayout(false);
             this.prepagoGb.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
+            this.tipoLlenadoGb.ResumeLayout(false);
+            this.tipoLlenadoGb.PerformLayout();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -628,10 +799,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.TextBox cantidadTb;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button habilitarBt;
         private System.Windows.Forms.ComboBox bombasCb;
         private System.Windows.Forms.RadioButton litrosRb;
         private System.Windows.Forms.RadioButton quetzalesRb;
@@ -661,12 +830,29 @@
         private System.Windows.Forms.Label dineroB4Tb;
         private System.Windows.Forms.Label label16;
         private System.IO.Ports.SerialPort serialPort1;
-        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.GroupBox tipoLlenadoGb;
         private System.Windows.Forms.RadioButton tanquellenoRb;
         private System.Windows.Forms.RadioButton prepagoRb;
         private System.Windows.Forms.GroupBox prepagoGb;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox bombaGb;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button precioDiaBtn;
+        private System.Windows.Forms.TextBox precioDiaTb;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.TextBox nombreClienteTb;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

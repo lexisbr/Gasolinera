@@ -18,16 +18,21 @@ namespace Gasolinera
     public partial class Form1 : Form
     {
         private static ArduinoCommmunication arduinoCom = new ArduinoCommmunication();
-        private static ControlesGasolinera controles = new ControlesGasolinera();
 
         private decimal precioDelDia = 34m;
-        private int tipoLlenado;
+        private string tipoLlenado;
+        private int bombaSeleccionada;
+        private string tipoCantidad;
+        private Despacho despachoTanqueLlenoB1;
+        private Despacho despachoTanqueLlenoB2;
+        private Despacho despachoTanqueLlenoB3;
+        private Despacho despachoTanqueLlenoB4;
 
         public Form1()
         {
             InitializeComponent();
-            serialPort1.Open();
-            serialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
+            //serialPort1.Open();
+            //serialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
         }
 
         void DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
@@ -46,13 +51,15 @@ namespace Gasolinera
 
             if(data.message == null) { 
                 decimal litrosActuales = Decimal.Parse(data.flowValue);
-                int bombaSeleccionada = ObtenerBombaSeleccionada();
-                SetLabelsValues(bombaSeleccionada, litrosActuales);
+                SetLabelsValues(litrosActuales);
 ;            } 
             else
             {
                 MessageBox.Show(data.message);
                 if (data.message == "Ha finalizado el llenado") {
+                    if (tipoLlenado == "Tanque lleno") {
+                        CerrarDespachoTanqueLleno();
+                    }
                     litrosBomba1.Text = "0.00";
                 }
             }
@@ -74,39 +81,71 @@ namespace Gasolinera
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string cantidad = cantidadTb.Text;
-            decimal limite = Decimal.Parse(cantidad);
-            string opcionSeleccionada = ObtenerOpcionSeleccionada();
-            int bombaSeleccionada = ObtenerBombaSeleccionada();
-            //IniciarValores(bombaSeleccionada, opcionSeleccionada == "L");
-            arduinoCom.sendMessageArduino(serialPort1, tipoLlenado.ToString(), limite.ToString());
+            
+            try {
+                
+                bombaSeleccionada = ObtenerBombaSeleccionada();
+                tipoLlenado = ObtenerTipoLlenado();
+                string cliente = nombreClienteTb.Text;
+
+                if (tipoLlenado == "Prepago")
+                {
+                    tipoCantidad = ObtenerCantidadSeleccionada();
+                    decimal limiteLitros = ObtenerLimiteLitros(tipoCantidad);
+                    decimal cantidadDinero = ControlesGasolinera.ObtenerCantidadDinero(limiteLitros);
+                    ControlesGasolinera.AddDespacho(cliente, tipoLlenado, limiteLitros, cantidadDinero, $"Bomba {bombaSeleccionada}");
+                    // arduinoCom.sendMessageArduino(serialPort1, tipoLlenado.ToString(), limiteLitros.ToString());
+                }
+                else {
+                    GenerarDespachoTanqueLleno(cliente);
+                    
+                }
+                
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private string ObtenerOpcionSeleccionada() {
+        private decimal ObtenerLimiteLitros(string tipoCantidad) {
+            try {
+                decimal limite = Decimal.Parse(cantidadTb.Text);
+                if (tipoCantidad == "Q")
+                {
+                    return ControlesGasolinera.ObtenerCantidadLitros(limite);
+                }
+                return limite;
+            } catch(Exception ex) {
+                throw ex; 
+            }
+        }
+
+
+        private string ObtenerCantidadSeleccionada() {
             if (quetzalesRb.Checked) return "Q";
             else if (litrosRb.Checked) return "L";
             return "";
         }
 
-       private void SetLabelsValues(int numBomba, decimal litros)
+       private void SetLabelsValues(decimal litros)
         {
-            switch (numBomba)
+            switch (bombaSeleccionada)
             {
                 case 1:
                     litrosBomba1.Text = litros.ToString();
-                    dineroBomba1.Text = controles.CantidadDineroToString(litros);
+                    dineroBomba1.Text = ControlesGasolinera.CantidadDineroToString(litros);
                     break;
                 case 2:
                     litrosB2Tb.Text = litros.ToString();
-                    dineroB2Tb.Text = controles.CantidadDineroToString(litros);
+                    dineroB2Tb.Text = ControlesGasolinera.CantidadDineroToString(litros);
                     break;
                 case 3:
                     litrosB3Tb.Text = litros.ToString();
-                    dineroB3Tb.Text = controles.CantidadDineroToString(litros);
+                    dineroB3Tb.Text = ControlesGasolinera.CantidadDineroToString(litros);
                     break;
                 case 4:
                     litrosB4Tb.Text = litros.ToString();
-                    dineroB4Tb.Text = controles.CantidadDineroToString(litros);
+                    dineroB4Tb.Text = ControlesGasolinera.CantidadDineroToString(litros);
                     break;
             }
         }
@@ -130,28 +169,27 @@ namespace Gasolinera
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
-            CambiarTipoLlenado();
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
-            CambiarTipoLlenado();
+            prepagoGb.Enabled = prepagoRb.Checked;
         }
 
-        public void CambiarTipoLlenado()
+        public string ObtenerTipoLlenado()
         {
-            prepagoGb.Enabled = prepagoRb.Checked;
+            
             if (prepagoRb.Checked)
             {
-                tipoLlenado = 0;
+                return "Prepago";
             }
             else if (tanquellenoRb.Checked)
             {
-                tipoLlenado = 1;
+                return "Tanque lleno";
             }
             else
             {
-                tipoLlenado = -1;
+                return "";
             }
         }
 
@@ -189,7 +227,7 @@ namespace Gasolinera
 
         private void bombasCb_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            habilitarBt.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -199,6 +237,79 @@ namespace Gasolinera
         private void litrosB2Tb_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (precioDiaTb.Enabled == true)
+            {
+                try
+                {
+                    decimal precioDia = Decimal.Parse(precioDiaTb.Text);
+                    ControlesGasolinera.PrecioDelDia = precioDia;
+                    MessageBox.Show("Se ha guardado el precio del día");
+                    precioDiaTb.Enabled = false;
+                    tipoLlenadoGb.Enabled = true;
+                    bombaGb.Enabled = true;
+                    precioDiaBtn.Text = "Editar";
+                    prepagoRb.Select();
+                }
+                catch
+                {
+                    MessageBox.Show("Ingresa un valor valido");
+                }
+            }
+            else {
+                precioDiaTb.Enabled = true;
+                precioDiaBtn.Text = "Guardar";
+            }
+            
+        }
+
+        private void GenerarDespachoTanqueLleno(string cliente) {
+            switch (bombaSeleccionada) {
+                case 1:
+                    despachoTanqueLlenoB1 = new Despacho(cliente, tipoLlenado, $"Bomba {bombaSeleccionada}");
+                    break;
+                case 2:
+                    despachoTanqueLlenoB2 = new Despacho(cliente, tipoLlenado, $"Bomba {bombaSeleccionada}");
+                    break;
+                case 3:
+                    despachoTanqueLlenoB3 = new Despacho(cliente, tipoLlenado, $"Bomba {bombaSeleccionada}");
+                    break;
+                case 4:
+                    despachoTanqueLlenoB4 = new Despacho(cliente, tipoLlenado, $"Bomba {bombaSeleccionada}");
+                    break;
+            }
+
+            
+
+        }
+
+        private void CerrarDespachoTanqueLleno() {
+            switch (bombaSeleccionada)
+            {
+                case 1:
+                    despachoTanqueLlenoB1.CantidadLitros = Decimal.Parse(litrosBomba1.Text);
+                    despachoTanqueLlenoB1.DineroPagado = Decimal.Parse(dineroBomba1.Text);
+                    ControlesGasolinera.AddDespacho(despachoTanqueLlenoB1);
+                    break;
+                case 2:
+                    despachoTanqueLlenoB2.CantidadLitros = Decimal.Parse(litrosB2Tb.Text);
+                    despachoTanqueLlenoB2.DineroPagado = Decimal.Parse(dineroB2Tb.Text);
+                    ControlesGasolinera.AddDespacho(despachoTanqueLlenoB2);
+                    break;
+                case 3:
+                    despachoTanqueLlenoB3.CantidadLitros = Decimal.Parse(litrosB3Tb.Text);
+                    despachoTanqueLlenoB3.DineroPagado = Decimal.Parse(dineroB3Tb.Text);
+                    ControlesGasolinera.AddDespacho(despachoTanqueLlenoB3);
+                    break;
+                case 4:
+                    despachoTanqueLlenoB4.CantidadLitros = Decimal.Parse(litrosB4Tb.Text);
+                    despachoTanqueLlenoB4.DineroPagado = Decimal.Parse(dineroB4Tb.Text);
+                    ControlesGasolinera.AddDespacho(despachoTanqueLlenoB4);
+                    break;
+            }
         }
     }
 }

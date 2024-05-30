@@ -49,10 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Archivos.cs" />
     <Compile Include="Classes\ArduinoCommmunication.cs" />
     <Compile Include="Classes\Bomba.cs" />
     <Compile Include="Classes\ControlesGasolinera.cs" />
+    <Compile Include="Classes\Despacho.cs" />
     <Compile Include="Classes\JSONMessage.cs" />
+    <Compile Include="Classes\Reportes.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +89,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="database.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
