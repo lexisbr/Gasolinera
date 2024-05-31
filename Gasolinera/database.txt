@@ -12,3 +12,13 @@ id;cliente;fecha;bomba;tipo_llenado;dinero;litros
 10;Hola;30/05/2024 20:00:42;Bomba 1;Prepago;10.08;0.42;
 11;Hola;30/05/2024 20:02:08;Bomba 1;Prepago;7.2;0.3;
 12;hola;30/05/2024 20:04:58;Bomba 1;Prepago;12.0;0.5;
+13;Alejandro Barrios;30/05/2024 20:09:09;Bomba 1;Prepago;17.5;0.7;
+14;cero la bomba;30/05/2024 20:19:04;Bomba 1;Prepago;12.5;0.5;
+15;aaaa;30/05/2024 20:20:36;Bomba 1;Prepago;25;1;
+16;sss;30/05/2024 20:22:10;Bomba 1;Prepago;25;1;
+17;alejandro barrios;30/05/2024 20:23:28;Bomba 1;Prepago;12.5;0.5;
+18;aaa;30/05/2024 20:23:49;Bomba 1;Prepago;12.5;0.5;
+19;aaa;30/05/2024 20:31:24;Bomba 1;Prepago;12.5;0.5;
+20;alejandro;30/05/2024 20:33:02;Bomba 1;Prepago;12.5;0.5;
+21;alejandro;30/05/2024 20:33:30;Bomba 1;Prepago;25;1;
+22;alejandro;30/05/2024 20:34:12;Bomba 2;Prepago;25;1;

@@ -100,6 +100,7 @@ namespace Gasolinera
                     }
                     else
                     {
+                        arduinoCom.sendMessageArduino(serialPort1, tipoLlenado.ToString(), 0.ToString());
                         GenerarDespachoTanqueLleno(cliente);
 
                     }
