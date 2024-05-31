@@ -31,8 +31,9 @@ namespace Gasolinera
         public Form1()
         {
             InitializeComponent();
-            //serialPort1.Open();
-            //serialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
+            ControlesGasolinera.FillListaDespachos();
+            serialPort1.Open();
+            serialPort1.DataReceived += new SerialDataReceivedEventHandler(DataReceived);
         }
 
         void DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
@@ -60,7 +61,6 @@ namespace Gasolinera
                     if (tipoLlenado == "Tanque lleno") {
                         CerrarDespachoTanqueLleno();
                     }
-                    litrosBomba1.Text = "0.00";
                 }
             }
         }
@@ -87,19 +87,28 @@ namespace Gasolinera
                 bombaSeleccionada = ObtenerBombaSeleccionada();
                 tipoLlenado = ObtenerTipoLlenado();
                 string cliente = nombreClienteTb.Text;
-
-                if (tipoLlenado == "Prepago")
+                ResetBombas();
+                if (cliente.Trim().Length > 0)
                 {
-                    tipoCantidad = ObtenerCantidadSeleccionada();
-                    decimal limiteLitros = ObtenerLimiteLitros(tipoCantidad);
-                    decimal cantidadDinero = ControlesGasolinera.ObtenerCantidadDinero(limiteLitros);
-                    ControlesGasolinera.AddDespacho(cliente, tipoLlenado, limiteLitros, cantidadDinero, $"Bomba {bombaSeleccionada}");
-                    // arduinoCom.sendMessageArduino(serialPort1, tipoLlenado.ToString(), limiteLitros.ToString());
+                    if (tipoLlenado == "Prepago")
+                    {
+                        tipoCantidad = ObtenerCantidadSeleccionada();
+                        decimal limiteLitros = ObtenerLimiteLitros(tipoCantidad);
+                        decimal cantidadDinero = ControlesGasolinera.ObtenerCantidadDinero(limiteLitros);
+                        ControlesGasolinera.AddDespacho(cliente, tipoLlenado, limiteLitros, cantidadDinero, $"Bomba {bombaSeleccionada}");
+                        arduinoCom.sendMessageArduino(serialPort1, tipoLlenado.ToString(), limiteLitros.ToString());
+                    }
+                    else
+                    {
+                        GenerarDespachoTanqueLleno(cliente);
+
+                    }
                 }
                 else {
-                    GenerarDespachoTanqueLleno(cliente);
-                    
+                    MessageBox.Show("Debes ingresar un nombre para el cliente");
                 }
+
+               
                 
             }
             catch (Exception ex) {
@@ -165,6 +174,31 @@ namespace Gasolinera
                 default:
                     return 0;
             }
+        }
+
+        private void ResetBombas() {
+            switch (bombaSeleccionada)
+            {
+                case 1:
+                    litrosBomba1.Text = "0.00";
+                    dineroBomba1.Text = "0.00";
+                    break;
+                case 2:
+                    litrosB2Tb.Text = "0.00";
+                    dineroB2Tb.Text = "0.00";
+                    break;
+                case 3:
+                    despachoTanqueLlenoB3.CantidadLitros = Decimal.Parse(litrosB3Tb.Text);
+                    despachoTanqueLlenoB3.DineroPagado = Decimal.Parse(dineroB3Tb.Text);
+                    ControlesGasolinera.AddDespacho(despachoTanqueLlenoB3);
+                    break;
+                case 4:
+                    despachoTanqueLlenoB4.CantidadLitros = Decimal.Parse(litrosB4Tb.Text);
+                    despachoTanqueLlenoB4.DineroPagado = Decimal.Parse(dineroB4Tb.Text);
+                    ControlesGasolinera.AddDespacho(despachoTanqueLlenoB4);
+                    break;
+            }
+
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -310,6 +344,25 @@ namespace Gasolinera
                     ControlesGasolinera.AddDespacho(despachoTanqueLlenoB4);
                     break;
             }
+        }
+
+        private void LoadReportes(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 1) {
+                List<Despacho> listaDespachos = ControlesGasolinera.ListaDespachos;
+                List<Despacho> cierreCajaDiario = Reportes.CierresDeCajaDiarios(listaDespachos, DateTime.Today);
+                List<Despacho> despachosPrepago = Reportes.DespachosPrepago(listaDespachos);
+                List<Despacho> despachosTLleno = Reportes.DespachosTanqueLleno(listaDespachos);
+                (string bombaMasUsada, string bombaMenosUsada) = Reportes.ObtenerUsoBombas(listaDespachos);
+
+                despachosDiaGr.DataSource = cierreCajaDiario;
+                despachosPrepagoGr.DataSource = despachosPrepago;
+                despachosTLlenoGr.DataSource = despachosTLleno;
+                bombasGr.Rows.Clear();
+                bombasGr.Rows.Add("Bomba menos usada", bombaMenosUsada);
+                bombasGr.Rows.Add("Bomba más usada", bombaMasUsada);
+            }
+           
         }
     }
 }

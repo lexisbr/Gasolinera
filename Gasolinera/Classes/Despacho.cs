@@ -27,9 +27,9 @@ namespace Gasolinera.Classes
             Bomba = bomba;
         }
 
-        public Despacho(string nombreCliente, string tipoLlenado, decimal cantidadLitros, decimal dineroPagado, string bomba)
+        public Despacho(int id, string nombreCliente, string tipoLlenado, decimal cantidadLitros, decimal dineroPagado, string bomba)
         {
-            Id = counter++;
+            Id = id;
             NombreCliente = nombreCliente;
             FechaDespacho = DateTime.Now;
             TipoLlenado = tipoLlenado;

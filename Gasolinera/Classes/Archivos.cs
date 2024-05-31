@@ -24,14 +24,14 @@ namespace Gasolinera.Classes
             }
         }
 
-        public static List<Despacho> LeerArchivo(string rutaArchivo)
+        public static List<Despacho> LeerArchivo()
         {
             List<Despacho> despachos = new List<Despacho>();
-            var lineas = File.ReadAllLines(rutaArchivo);
+            String[] lineas = File.ReadAllLines(pathArchivo);
 
-            foreach (var linea in lineas.Skip(1))
+            foreach (String linea in lineas.Skip(1))
             {
-                var columnas = linea.Split(';');
+                String[] columnas = linea.Split(';');
 
                 Despacho despacho = new Despacho(
                         int.Parse(columnas[0]),

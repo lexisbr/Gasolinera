@@ -13,12 +13,12 @@ namespace Gasolinera.Classes
             return abastecimientos.Where(a => a.FechaDespacho.Date == dia.Date).ToList();
         }
 
-        public static List<Despacho> AbastecimientosPrepago(List<Despacho> abastecimientos)
+        public static List<Despacho> DespachosPrepago(List<Despacho> abastecimientos)
         {
             return abastecimientos.Where(a => a.TipoLlenado.Equals("Prepago", StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
-        public static List<Despacho> AbastecimientosTanqueLleno(List<Despacho> abastecimientos)
+        public static List<Despacho> DespachosTanqueLleno(List<Despacho> abastecimientos)
         {
             return abastecimientos.Where(a => a.TipoLlenado.Equals("Tanque lleno", StringComparison.OrdinalIgnoreCase)).ToList();
         }

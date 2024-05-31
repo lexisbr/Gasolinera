@@ -9,10 +9,15 @@ namespace Gasolinera.Classes
     internal class ControlesGasolinera
     {
         private static decimal precioDelDia;
-        private static List<Despacho> listaDespachos = new List<Despacho>();
+        private static List<Despacho> listaDespachos;
 
         public static decimal PrecioDelDia { get => precioDelDia; set => precioDelDia = value; }
         internal static List<Despacho> ListaDespachos { get => listaDespachos; set => listaDespachos = value; }
+
+        public static void FillListaDespachos()
+        {
+            listaDespachos = Archivos.LeerArchivo();
+        }
 
         public static decimal ObtenerCantidadLitros(decimal flowValue)
         {
@@ -30,7 +35,8 @@ namespace Gasolinera.Classes
         }
 
         public static void AddDespacho(string nombreCliente, string tipoLlenado, decimal cantidadLitros, decimal dineroPagado, string bomba) {
-            Despacho newDespacho = new Despacho(nombreCliente, tipoLlenado, cantidadLitros, dineroPagado, bomba);
+            int nuevoId = ObtenerIdMasAlto() + 1;
+            Despacho newDespacho = new Despacho(nuevoId, nombreCliente, tipoLlenado, cantidadLitros, dineroPagado, bomba);
             ListaDespachos.Add(newDespacho);
             try { 
                 Archivos.WriteDespacho(newDespacho);
@@ -50,6 +56,19 @@ namespace Gasolinera.Classes
                 throw new Exception($"Error al escribir en archivo: {ex}");
             }
 
+        }
+
+        public static int ObtenerIdMasAlto()
+        {
+            if (listaDespachos != null || listaDespachos.Count != 0)
+            {
+                return listaDespachos.OrderByDescending(d => d.Id).FirstOrDefault().Id;
+            }
+            else {
+                return 0;
+            }
+
+                
         }
 
 

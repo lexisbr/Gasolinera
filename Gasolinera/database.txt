@@ -1,5 +1,14 @@
 id;cliente;fecha;bomba;tipo_llenado;dinero;litros
-0;lex;30/05/2024 01:15:15;Bomba 1;90;3;
-1;lex;30/05/2024 01:15:17;Bomba 2;90;3;
-2;lex;30/05/2024 01:15:19;Bomba 3;90;3;
-1;awsasd;30/05/2024 01:16:03;Bomba 2;Prepago;100;5;
+0;lex;30/05/2024 01:15:15;Bomba 1;Prepago;90;3;
+1;lex;30/05/2024 01:15:17;Bomba 2;Tanque lleno;90;3;0;Alejandro;30/05/2024 17:38:28;Bomba 1;Prepago;90;3;
+2;Yeeeah;30/05/2024 17:52:39;Bomba 1;Prepago;100;4;
+3;Yeeeah;30/05/2024 17:52:54;Bomba 2;Prepago;100;4;
+4;Yeeeah;30/05/2024 17:53:03;Bomba 2;Prepago;100;4;
+5;Alejandro;30/05/2024 19:49:51;Bomba 1;Prepago;24;1;
+6;aaa;30/05/2024 19:51:07;Bomba 1;Prepago;24;1;
+7;saaa;30/05/2024 19:52:09;Bomba 1;Prepago;24;1;
+8;aaaa;30/05/2024 19:56:45;Bomba 1;Prepago;2.4;0.1;
+9;aaaa;30/05/2024 19:57:04;Bomba 1;Prepago;12.0;0.5;
+10;Hola;30/05/2024 20:00:42;Bomba 1;Prepago;10.08;0.42;
+11;Hola;30/05/2024 20:02:08;Bomba 1;Prepago;7.2;0.3;
+12;hola;30/05/2024 20:04:58;Bomba 1;Prepago;12.0;0.5;
